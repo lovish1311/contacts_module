@@ -1,0 +1,16 @@
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="android:statusBarColor">@color/color_primary</item>
+    </style>
+
+    <style name="CircularImageViewStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">27dp</item>
+    </style>
+
+    <style name="write_a_mes">
+        <item name="android:text">write a message...</item>
+    </style>
+</resources>
