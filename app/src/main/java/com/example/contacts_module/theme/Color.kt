@@ -26,4 +26,7 @@ val TextColor1 = Color(0xFF4F5E7B)
 val TextColor2 = Color(0xFF8E8E8E)
 val TextColor3 = Color(0xFF5C5555)
 val TextColor4 = Color(0xFFD0BABA)
+val IconGrey = Color(
+    0xFF4A4747
+)
 val MessageInputBackground = Color(0xFFEDEDED)

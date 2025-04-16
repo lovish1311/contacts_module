@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">module</string>
     <string name="write_a_mes">write a message...</string>
+    <string name="workspace">Workdesk</string>
 </resources>

@@ -13,32 +13,29 @@ import androidx.compose.ui.unit.dp
 import com.example.helpandsupporttcc.ui.theme.ColorWhite
 
 @Composable
-fun RoundedCornerBox() {
+fun RoundedCornerBox(width:Int,height:Int,content:@Composable () -> Unit) {
     Box(
         modifier = Modifier
-            .width(350.dp)
-            .height(75.dp)
+            .width(width.dp)
+            .height(height.dp)
             .background(
                 color = ColorWhite,
                 shape = RoundedCornerShape(10.dp)
             )
-            .padding(16.dp), // Padding inside the box
-        contentAlignment = Alignment.CenterStart // Adjust alignment as needed
+            .padding(16.dp),
+        contentAlignment = Alignment.CenterStart
     ) {
-        // Add your elements here within this Box
+        content
 
-        // Example elements:
-        Text(text = "Element 1", modifier = Modifier.padding(end = 8.dp))
-        Spacer(modifier = Modifier.width(8.dp)) // Add some spacing between elements
-        Text(text = "Element 2")
-        // You can add more elements and use different Composables
-        // like Row or Column inside this Box for more complex layouts.
     }
 }
 
-// Preview function (optional)
+
 @Preview
 @Composable
 fun PreviewRoundedCornerBox() {
-    RoundedCornerBox()
+    RoundedCornerBox(350,190, content = {
+        Text(text = "Hello, this is a preview of a rounded corner box!")
+
+    })
 }
