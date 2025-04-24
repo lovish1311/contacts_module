@@ -1,6 +1,8 @@
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -22,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.example.contacts_module.R
+import com.example.contacts_module.composeUI.shortComponents.MessageInputBoxHintWithIcons
 import com.example.helpandsupporttcc.ui.theme.ColorPrimary
 
 @Composable
@@ -77,11 +80,11 @@ fun ConversationScreenOptimized() {
                 )
             }
             Spacer(modifier = Modifier.width(34.dp))
-            Image(
-                painter = painterResource(id = R.drawable.ruppee),
-                contentDescription = "Rupee",
-                modifier = Modifier.size(18.dp)
-            )
+//            Image(
+//                painter = painterResource(id = R.drawable.ruppee),
+//                contentDescription = "Rupee",
+//                modifier = Modifier.size(18.dp)
+//            )
             Spacer(modifier = Modifier.width(20.dp))
             Image(
                 painter = painterResource(id = R.drawable.mynaui_video),
@@ -121,9 +124,34 @@ fun ConversationScreenOptimized() {
                         bottomStart = 0.dp,
                         bottomEnd = 0.dp
                     )
-                )
+                ),
+            contentAlignment = Alignment.BottomCenter // Initially align to bottom center
         ) {
-            // Your layout for the bottom content goes here
+            Column(
+                modifier = Modifier.fillMaxSize(), // Let the Column take the full space of the Box
+                verticalArrangement = Arrangement.SpaceBetween // Distribute items vertically
+            ) {
+                // LazyColumn for your messages - it will take the top available space
+                LazyColumn(
+                    modifier = Modifier.weight(1f) // Make it take up the majority of the vertical space
+                ) {
+                    // Replace this with your actual list of items
+                    items(emptyList<String>()) { message ->
+                        Text(text = message, modifier = Modifier.padding(16.dp))
+                    }
+                }
+
+                // Message Input Box at the bottom
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 1.dp, bottom = 17.dp)
+                        .windowInsetsPadding(WindowInsets.ime),
+                    horizontalArrangement = Arrangement.Center // Center the input box horizontally
+                ) {
+                    MessageInputBoxHintWithIcons()
+                }
+            }
         }
     }
 }

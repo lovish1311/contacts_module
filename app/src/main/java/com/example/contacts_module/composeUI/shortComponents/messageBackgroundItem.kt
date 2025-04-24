@@ -25,7 +25,7 @@ fun MessageBackgroundItem(message: String, seenStatusIconId: Int, date: String) 
         modifier = Modifier
             .wrapContentWidth() // Width wraps content
             .wrapContentHeight() // Height wraps content
-            .background(lightOrange, RoundedCornerShape(20.dp))
+            .background(lightOrange, RoundedCornerShape(20.dp,20.dp,20.dp,0.dp))
             .padding(8.dp,8.dp,11.39.dp,13.dp) // Add some padding around the message
     ) {
         Column(horizontalAlignment = Alignment.End) { // Align content to the end for the status

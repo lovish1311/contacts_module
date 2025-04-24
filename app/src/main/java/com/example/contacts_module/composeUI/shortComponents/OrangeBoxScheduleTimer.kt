@@ -68,7 +68,8 @@ fun OrangeBoxScheduleTimer(
 @Preview
 @Composable
 fun PreviewOrangeBoxScheduleTimer() {
-    // Example usage of the reusable composable
+    // Example usage of the reusable
+    // composable
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         OrangeBoxScheduleTimer(
             text = "Disappearing Message",

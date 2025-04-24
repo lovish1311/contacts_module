@@ -25,8 +25,17 @@ import com.example.helpandsupporttcc.ui.theme.ColorPrimaryOrange
 import com.example.helpandsupporttcc.ui.theme.MessageInputBackground
 
 @Composable
-fun MessageInputBoxHintWithIcons(backgroundColor:Color = MessageInputBackground) {
+fun MessageInputBoxHintWithIcons(
+    modifier: Modifier = Modifier,
+    backgroundColor: Color = MessageInputBackground,
+    onEmojiClick: () -> Unit = {}, // Default empty lambda
+    onTimerClick: () -> Unit = {}, // Default empty lambda
+    onDocumentClick: () -> Unit = {}, // Default empty lambda
+    onCameraClick: () -> Unit = {}, // Default empty lambda
+    onMicClick: () -> Unit = {} // Default empty lambda
+) {
     Row(
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Box(
@@ -43,14 +52,17 @@ fun MessageInputBoxHintWithIcons(backgroundColor:Color = MessageInputBackground)
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start // Align items starting from the left
             ) {
-                // First Icon
+                // First Icon (Emoji)
                 var emojiTint by remember { mutableStateOf(Color.Gray) }
                 Icon(
                     painter = painterResource(id = R.drawable.emoji_gray),
                     contentDescription = "Emoji Icon",
                     modifier = Modifier
                         .size(24.dp)
-                        .clickable { emojiTint = if (emojiTint == Color.Gray) ColorPrimaryOrange else Color.Gray },
+                        .clickable {
+                            emojiTint = if (emojiTint == Color.Gray) ColorPrimaryOrange else Color.Gray
+                            onEmojiClick() // Invoke the provided click listener
+                        },
                     tint = emojiTint
                 )
 
@@ -67,35 +79,44 @@ fun MessageInputBoxHintWithIcons(backgroundColor:Color = MessageInputBackground)
                         .weight(1f) // Let the text take the remaining horizontal space
                 )
 
-                // Icons with specific spacing
+                // Icons with specific spacing (Timer)
                 var timerTint by remember { mutableStateOf(Color.Gray) }
                 Icon(
                     painter = painterResource(id = R.drawable.timer_svg),
                     contentDescription = "Timer Icon",
                     modifier = Modifier
                         .size(24.dp)
-                        .clickable { timerTint = if (timerTint == Color.Gray) ColorPrimaryOrange else Color.Gray },
+                        .clickable {
+                            timerTint = if (timerTint == Color.Gray) ColorPrimaryOrange else Color.Gray
+                            onTimerClick() // Invoke the provided click listener
+                        },
                     tint = timerTint
                 )
                 Spacer(modifier = Modifier.width(10.dp)) // Spacing between icons
 
+                // Icons with specific spacing (Document)
                 var documentTint by remember { mutableStateOf(Color.Gray) }
                 Icon(
                     painter = painterResource(id = R.drawable.document_svg),
                     contentDescription = "Document Icon",
                     modifier = Modifier
                         .size(24.dp)
-                        .clickable { documentTint = if (documentTint == Color.Gray) ColorPrimaryOrange else Color.Gray },
+                        .clickable {
+                            documentTint = if (documentTint == Color.Gray) ColorPrimaryOrange else Color.Gray
+                            onDocumentClick() // Invoke the provided click listener
+                        },
                     tint = documentTint
                 )
                 Spacer(modifier = Modifier.width(10.dp)) // Spacing between icons
 
+                // Icons with specific spacing (Camera)
                 var cameraTint by remember { mutableStateOf(Color.Gray) }
                 Icon(
                     painter = painterResource(id = R.drawable.camera_icon),
                     contentDescription = "Camera Icon",
                     modifier = Modifier
-                        .size(24.dp),
+                        .size(24.dp)
+                        .clickable { onCameraClick() }, // Invoke the provided click listener
                     tint = cameraTint
                 )
             }
@@ -109,7 +130,8 @@ fun MessageInputBoxHintWithIcons(backgroundColor:Color = MessageInputBackground)
             modifier = Modifier
                 .size(41.dp)
                 .clip(CircleShape)
-                .background(ColorPrimaryOrange),
+                .background(ColorPrimaryOrange)
+                .clickable { onMicClick() }, // Invoke the provided click listener
             contentAlignment = Alignment.Center
         ) {
             Icon(
@@ -126,5 +148,11 @@ fun MessageInputBoxHintWithIcons(backgroundColor:Color = MessageInputBackground)
 @Composable
 fun MessageInputBoxHintWithIconsPreview() {
     // Assuming you have ColorPrimaryOrange defined in your theme
-    MessageInputBoxHintWithIcons()
+    MessageInputBoxHintWithIcons(
+        onEmojiClick = { println("Emoji Clicked") },
+        onTimerClick = { println("Timer Clicked") },
+        onDocumentClick = { println("Document Clicked") },
+        onCameraClick = { println("Camera Clicked") },
+        onMicClick = { println("Mic Clicked") }
+    )
 }

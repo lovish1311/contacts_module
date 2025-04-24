@@ -1,5 +1,6 @@
 package com.example.contacts_module
 
+import ConversationScreenOptimized
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -12,6 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
 
+ConversationScreenOptimized()
         }
     }
 }
